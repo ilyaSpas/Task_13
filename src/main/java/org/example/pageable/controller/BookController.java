@@ -1,8 +1,6 @@
 package org.example.pageable.controller;
 
-import com.fasterxml.jackson.annotation.JsonView;
 import org.example.pageable.entity.Book;
-import org.example.pageable.entity.view.Views;
 import org.example.pageable.service.imp.BookServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -10,8 +8,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/v1/books")
@@ -30,7 +26,6 @@ public class BookController {
     }
 
     @GetMapping
-    @JsonView(Views.Book.class)
     public ResponseEntity<Page<Book>> findAll(Pageable pageable) {
         return new ResponseEntity<>(bookService.findAll(pageable), HttpStatus.OK);
     }

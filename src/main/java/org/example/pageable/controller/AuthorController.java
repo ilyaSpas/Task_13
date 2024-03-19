@@ -1,9 +1,6 @@
 package org.example.pageable.controller;
 
-import com.fasterxml.jackson.annotation.JsonView;
 import org.example.pageable.entity.Author;
-import org.example.pageable.entity.Book;
-import org.example.pageable.entity.view.Views;
 import org.example.pageable.service.imp.AuthorServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -31,7 +28,6 @@ public class AuthorController {
     }
 
     @GetMapping
-    @JsonView(Views.Author.class)
     public ResponseEntity<Page<Author>> findAll(Pageable pageable) {
         return new ResponseEntity<>(authorService.findAll(pageable), HttpStatus.OK);
     }
